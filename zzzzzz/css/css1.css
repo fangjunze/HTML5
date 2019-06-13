@@ -1,0 +1,21 @@
+﻿@charset "utf-8";
+/* CSS Document */
+body {
+	font-size:12px
+}
+/*文件拖拽样式*/
+#divFrame{
+	margin-top: 50px;
+	width:400px;   
+	height:400px; 
+	top:20px; 
+	left:30px;
+	position:absolute;
+}
+#divTitle{
+	
+	height:23px;
+	line-height:23px;
+	cursor:move;
+	padding-left:10px
+}

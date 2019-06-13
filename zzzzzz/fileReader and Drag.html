@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>fileReader，与图片拖拽</title>
+	<link href="css/css1.css" rel="stylesheet" type="text/css">
+	<script type="text/javascript" language="jscript" src="js/js1.js" />
+	</script>
+</head>
+
+<body onLoad="pageload();"style="text-align: center;">
+	<p>
+		<label>请选择一个文件：</label>
+		<input type="file" id="file" />
+		<input type="button" value="读取图像" onclick="readFile ()" />
+	</p>
+	<div id="divFrame" >
+		<div id="divTitle">
+			<!-- 这里用来显示读取结果 -->
+			<div name="result" id="result">
+			</div>
+		</div>
+	</div>
+
+	<script language=javascript>
+		var result = document.getElementById("result");
+		var file = document.getElementById("file");
+		if(typeof FileReader == 'undefined') {
+			result.innerHTML = "<p>抱歉，你的浏览器不支持 FileReader</p>";
+			file.setAttribute('disabled', 'disabled');
+		}
+		//将文件以Data URL形式进行读入页面
+		function readFile() {
+			//检查是否为图像文件
+			var file = document.getElementById("file").files[0];
+			if(!/image\/\w+/.test(file.type)) {
+				alert("请确保文件为图像类型");
+				return false;
+			}
+			var reader = new FileReader();
+			//将文件以Data URL形式进行读入页面
+			reader.readAsDataURL(file);
+			reader.onload = function(e) {
+				var result = document.getElementById("result");
+				//在页面上显示文件
+				result.innerHTML = '<div style="display:block;">请用鼠标拖动我<img src="' + this.result + '" alt=""/ style="display: block;margin-left: auto;margin-right: auto;"></div>'
+			}
+		}
+	</script>
+</body>
